@@ -1,7 +1,21 @@
 pluginManagement {
     repositories {
-        mavenCentral()
         gradlePluginPortal()
+        mavenCentral()
+        maven {
+            name = 'Huskuraft'
+            url = 'https://repo.huskuraft.dev/releases'
+        }
+    }
+}
+
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+        maven {
+            name = 'Huskuraft'
+            url = 'https://repo.huskuraft.dev/releases'
+        }
     }
 }
 

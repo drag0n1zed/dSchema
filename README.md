@@ -12,9 +12,9 @@ from a pre-defined list for random placement.
     <span> | </span>
     <a href="https://www.curseforge.com/minecraft/mc-mods/effortless">CurseForge</a>
     <span> | </span>
-    <a href="https://github.com/huskcasaca/effortless">GitHub</a>
+    <a href="https://github.com/huskuraft/effortless">GitHub</a>
     <span> | </span>
-    <a href="https://github.com/huskcasaca/effortless/wiki">Documentation</a>
+    <a href="https://github.com/huskuraft/effortless/wiki">Documentation</a>
     <span> | </span>
     <a href="https://discord.gg/FwbBg8uUZ7">Discord</a>
 </div>
