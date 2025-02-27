@@ -37,7 +37,7 @@ from a pre-defined list for random placement.
 
 | Filename                      | Targets                  | Fabric  |  Quilt  |  Forge  | NeoForge |
 |-------------------------------|--------------------------|:-------:|:-------:|:-------:|:--------:|
-| `effortless-1.21.3-3.2.0.jar` | `1.21.3` `1.21.2`        | &check; | &check; |         | &check;  |
+| `effortless-1.21.3-3.2.0.jar` | `1.21.3` `1.21.2`        | &check; | &check; | &check; | &check;  |
 | `effortless-1.21.1-3.2.0.jar` | `1.21.1` `1.21`          | &check; | &check; | &check; | &check;  |
 | `effortless-1.20.6-3.2.0.jar` | `1.20.6` `1.20.5`        | &check; | &check; | &check; | &check;  |
 | `effortless-1.20.4-3.2.0.jar` | `1.20.4` `1.20.3`        | &check; | &check; | &check; |          |

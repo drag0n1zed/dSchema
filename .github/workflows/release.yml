@@ -1,4 +1,4 @@
-name: Release
+name: Release Mod
 
 on:
   push:
@@ -30,9 +30,9 @@ jobs:
         uses: gradle/actions/setup-gradle@v3
         env:
           MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
-          EFFORTLESS_PORT_TYPE: active
+          CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
         with:
-          arguments: modrinth
+          arguments: publish
 
   github-release:
     needs: gradle-publish
