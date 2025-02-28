@@ -16,7 +16,7 @@ dependencies {
     compileOnly 'io.netty:netty-all:4.1.109.Final'
     compileOnly 'org.slf4j:slf4j-api:2.0.13'
 
-    implementation 'dev.huskuraft.universal:common-api:0.1.1'
+    implementation 'dev.huskuraft.universal:common-api:0.1.0'
 
     [
         '1.17.1': ['fabric-api', 'quilt-api', 'forge-api',],
