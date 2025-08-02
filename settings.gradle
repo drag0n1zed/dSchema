@@ -15,4 +15,4 @@ plugins {
 }
 
 // Use the project name from your original file.
-rootProject.name = 'effortless'
+rootProject.name = 'dSchema'
