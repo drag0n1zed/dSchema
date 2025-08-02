@@ -207,7 +207,7 @@ public interface RecordTag extends Tag {
     }
 
     default <T extends Enum<T>> void putEnum(String key, Enum<T> value) {
-        var id = ResourceLocation.of("effortless", value.name().toLowerCase(Locale.ROOT));
+        var id = ResourceLocation.of("dschema", value.name().toLowerCase(Locale.ROOT));
         putString(key, id.toString());
     }
 

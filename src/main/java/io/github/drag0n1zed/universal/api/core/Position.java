@@ -15,7 +15,7 @@ public enum Position {
     }
 
     public Text getDisplayName() {
-        return Text.translate("effortless.position.%s".formatted(name));
+        return Text.translate("dschema.position.%s".formatted(name));
     }
 
     public AxisDirection getAxis() {

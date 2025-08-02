@@ -38,11 +38,11 @@ public enum Axis {
     }
 
     public Text getDisplayName() {
-        return Text.translate("effortless.axis.%s".formatted(name));
+        return Text.translate("dschema.axis.%s".formatted(name));
     }
 
     public Text getPositionName() {
-        return Text.translate("effortless.position.%s".formatted(name));
+        return Text.translate("dschema.position.%s".formatted(name));
     }
 
     public String getName() {

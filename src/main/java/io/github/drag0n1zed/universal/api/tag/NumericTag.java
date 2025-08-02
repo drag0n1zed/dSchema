@@ -41,7 +41,7 @@ public interface NumericTag extends Tag {
     Number getAsNumber();
 
 //    default <T extends Enum<T>> void putEnum(Enum<T> value) {
-//        var id = ResourceLocation.of("effortless", value.name().toLowerCase(Locale.ROOT));
+//        var id = ResourceLocation.of("dschema", value.name().toLowerCase(Locale.ROOT));
 //        putString(id.toString());
 //    }
 //

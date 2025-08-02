@@ -13,7 +13,7 @@ public interface StringTag extends Tag {
 
 
     static  <T extends Enum<T>> StringTag of(Enum<T> value) {
-        return of(ResourceLocation.of("effortless", value.name().toLowerCase(Locale.ROOT)).toString());
+        return of(ResourceLocation.of("dschema", value.name().toLowerCase(Locale.ROOT)).toString());
     }
 
     default String getString() {

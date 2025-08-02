@@ -99,9 +99,9 @@ public class TooltipHelper {
 
     public static Text holdShiftForSummary() {
         if (isSummaryButtonDown()) {
-            return Text.translate("effortless.tooltip.hold_for_summary", Text.translate("key.effortless.shift").withStyle(ChatFormatting.GRAY)).withStyle(ChatFormatting.DARK_GRAY);
+            return Text.translate("dschema.tooltip.hold_for_summary", Text.translate("key.dschema.shift").withStyle(ChatFormatting.GRAY)).withStyle(ChatFormatting.DARK_GRAY);
         } else {
-            return Text.translate("effortless.tooltip.hold_for_summary", Text.translate("key.effortless.shift").withStyle(ChatFormatting.DARK_GRAY)).withStyle(ChatFormatting.DARK_GRAY);
+            return Text.translate("dschema.tooltip.hold_for_summary", Text.translate("key.dschema.shift").withStyle(ChatFormatting.DARK_GRAY)).withStyle(ChatFormatting.DARK_GRAY);
         }
     }
 
