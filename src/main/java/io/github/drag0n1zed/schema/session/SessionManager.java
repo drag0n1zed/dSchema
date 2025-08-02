@@ -1,0 +1,28 @@
+package io.github.drag0n1zed.schema.session;
+
+import io.github.drag0n1zed.universal.api.core.Player;
+import io.github.drag0n1zed.schema.session.config.SessionConfig;
+
+public interface SessionManager {
+
+    void onSession(Session session, Player player);
+
+    void onSessionConfig(SessionConfig sessionConfig, Player player);
+
+    boolean isSessionValid();
+
+    SessionStatus getSessionStatus();
+
+    Session getLastSession();
+
+    SessionConfig getLastSessionConfig();
+
+    enum SessionStatus {
+        SUCCESS,
+        MOD_MISSING,
+        SERVER_MOD_MISSING,
+        CLIENT_MOD_MISSING,
+        PROTOCOL_NOT_MATCH
+    }
+
+}

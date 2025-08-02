@@ -1,0 +1,11 @@
+package io.github.drag0n1zed.universal.api.core;
+
+import io.github.drag0n1zed.universal.api.platform.PlatformReference;
+
+public interface ResourceKey<T> extends PlatformReference {
+
+    ResourceLocation registry();
+
+    ResourceLocation location();
+
+}
