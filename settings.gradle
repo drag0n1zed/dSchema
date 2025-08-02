@@ -1,25 +1,18 @@
 pluginManagement {
     repositories {
         gradlePluginPortal()
-        mavenLocal()
-        mavenCentral()
         maven {
-            name = 'Huskuraft'
-            url = 'https://repo.huskuraft.dev/releases'
+            name = 'MinecraftForge'
+            url = 'https://maven.minecraftforge.net/'
         }
     }
 }
 
-dependencyResolutionManagement {
-    repositories {
-        mavenLocal()
-        mavenCentral()
-        maven {
-            name = 'Huskuraft'
-            url = 'https://repo.huskuraft.dev/releases'
-        }
-    }
+// This plugin is a best practice that helps Gradle automatically find and download
+// the correct JDK (Java 17 in this case) for your project.
+plugins {
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '0.8.0' // It's good practice to use a specific version. 0.8.0 is current.
 }
 
+// Use the project name from your original file.
 rootProject.name = 'effortless'
-

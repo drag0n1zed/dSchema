@@ -8,9 +8,9 @@ import dev.huskuraft.effortless.building.config.ClipboardConfig;
 import dev.huskuraft.effortless.building.config.PatternConfig;
 import dev.huskuraft.effortless.building.config.RenderConfig;
 import dev.huskuraft.universal.api.config.ConfigSerializer;
-import dev.huskuraft.universal.api.nightconfig.core.CommentedConfig;
-import dev.huskuraft.universal.api.nightconfig.core.Config;
-import dev.huskuraft.universal.api.nightconfig.core.ConfigSpec;
+import com.electronwill.nightconfig.core.CommentedConfig;
+import com.electronwill.nightconfig.core.Config;
+import com.electronwill.nightconfig.core.ConfigSpec;
 
 public class ClientConfigConfigSerializer implements ConfigSerializer<ClientConfig> {
 

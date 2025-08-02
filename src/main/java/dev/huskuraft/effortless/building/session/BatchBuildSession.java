@@ -19,7 +19,6 @@ import dev.huskuraft.effortless.building.Context;
 import dev.huskuraft.effortless.building.Storage;
 import dev.huskuraft.effortless.building.clipboard.Snapshot;
 import dev.huskuraft.effortless.building.interceptor.BuildInterceptor;
-import dev.huskuraft.effortless.building.interceptor.FtbChunksInterceptor;
 import dev.huskuraft.effortless.building.interceptor.OpenPacInterceptor;
 import dev.huskuraft.effortless.building.operation.OperationFilter;
 import dev.huskuraft.effortless.building.operation.batch.BatchOperation;
@@ -63,8 +62,7 @@ public class BatchBuildSession implements Session {
 
     private static List<BuildInterceptor> createInterceptors(Entrance entrance, World world, Player player, Context context) {
         return Stream.of(
-                new OpenPacInterceptor(entrance),
-                new FtbChunksInterceptor(entrance)
+                new OpenPacInterceptor(entrance)
         ).filter(BuildInterceptor::isEnabled).collect(Collectors.toUnmodifiableList());
     }
 

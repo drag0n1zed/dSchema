@@ -2,6 +2,7 @@ package dev.huskuraft.effortless;
 
 import dev.huskuraft.universal.api.platform.PlatformLoader;
 
+import net.minecraftforge.fml.common.Mod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
