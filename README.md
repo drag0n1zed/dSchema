@@ -2,7 +2,7 @@
 
 # dSchema
 
-A specialized fork of Huskuraft's [Effortless Structures](https://github.com/huskuraft/effortless).
+A specialized fork of Huskuraft's [Effortless Structure](https://github.com/huskuraft/effortless).
 
 > **Note:** This fork is for a specific modpack. Support will only be provided through the modpack itself. For general feature requests, bug fixes, or ports, please refer to the original author.
 
