@@ -166,11 +166,21 @@ public final class SchemaClientManager implements ClientManager {
             getEntrance().getStructureBuilder().resetInteractions(getRunningClient().getPlayer());
         }
 
-        if (SchemaKeys.BUILD_MODE_RADIAL.getKeyBinding().isDown()) {
+        // --- START OF MODIFICATION ---
+        // Get the player's permissions from the session config
+        var sessionConfig = getEntrance().getSessionManager().getServerSessionConfig();
+        if (sessionConfig == null) return; // Not ready yet, exit early.
+
+        boolean canUseMod = sessionConfig.getByPlayer(getPlayer()).allowUseMod();
+
+        // Check for permission BEFORE checking if the key is down.
+        if (canUseMod && SchemaKeys.BUILD_MODE_RADIAL.getKeyBinding().isDown()) {
             if (!(getRunningClient().getPanel() instanceof SchemaStructureScreen)) {
                 new SchemaStructureScreen(getEntrance(), SchemaKeys.BUILD_MODE_RADIAL.getKeyBinding()).attach();
             }
         }
+        // --- END OF MODIFICATION ---
+
         if (SchemaKeys.UNDO.getKeyBinding().consumeClick()) {
             getEntrance().getClient().getSoundManager().playButtonClickSound();
             getEntrance().getStructureBuilder().undo(getRunningClient().getPlayer());
@@ -304,10 +314,6 @@ public final class SchemaClientManager implements ClientManager {
             getEntrance().getClient().getSoundManager().playButtonClickSound();
             new SchemaPatternScreen(getEntrance()).attach();
         }
-
-//        if (dschemaKeys.EDIT_REPLACE.getKeyBinding().consumeClick()) {
-//            getEntrance().getClient().getSoundManager().playButtonClickSound();
-//        }
 
         if (Platform.getInstance().isDevelopment()) {
             if (Keys.KEY_LEFT_CONTROL.isDown() && Keys.KEY_ENTER.isDown()) {
