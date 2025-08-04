@@ -4,7 +4,7 @@
 
 A specialized fork of Huskuraft's [Effortless Structure](https://github.com/huskuraft/effortless).
 
-> **Note:** This fork is for a specific modpack. Support will only be provided through the modpack itself. For general feature requests, bug fixes, or ports, please refer to the original author.
+> **Note:** This fork is for a specific modpack. Support will only be provided through the modpack itself.
 
 ## Added Features
 
@@ -15,7 +15,6 @@ A specialized fork of Huskuraft's [Effortless Structure](https://github.com/husk
 ## Configuration (`config/dschema.toml`)
 
 ```toml
-
 [global]
 #Should use commands to build using this mod.
 useCommands = false
