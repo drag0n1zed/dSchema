@@ -15,7 +15,6 @@ A specialized fork of Huskuraft's [Effortless Structure](https://github.com/husk
 ## Configuration (`config/dschema.toml`)
 
 ```toml
-player = {}
 
 [global]
 #Should use commands to build using this mod.
@@ -34,13 +33,13 @@ allowCopyPasteStructure = true
 useProperToolsOnly = true
 #The maximum distance a player can reach when building using this mod. 
 #Range: 0 ~ 32767
-maxReachDistance = 10
+maxReachDistance = 128
 #The maximum block volume a player can break at once when building using this mod. 
 #Range: 0 ~ 1000000
 maxBlockBreakVolume = 10000
 #The maximum block volume a player can place at once when building using this mod. 
 #Range: 0 ~ 1000000
-maxBlockPlaceVolume = 11111
+maxBlockPlaceVolume = 10000
 #The maximum block volume a player can interact at once when building using this mod. 
 #Range: 0 ~ 1000000
 maxBlockInteractVolume = 10000
@@ -58,21 +57,55 @@ whitelistedItems = []
 #The value must be a list of item resource locations like ["minecraft:stone", "minecraft:dirt"].
 blacklistedItems = []
 
+[player]
+
+[player.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx]
+allowUseMod = true
+allowBreakBlocks = true
+allowPlaceBlocks = true
+allowInteractBlocks = true
+allowCopyPasteStructure = true
+maxReachDistance = 16
+maxBlockBreakVolume = 256
+maxBlockPlaceVolume = 256
+maxBlockInteractVolume = 256
+maxStructureCopyPasteVolume = 256
+
 [tiers]
 
-[tiers.admin]
+[tiers.alpha]
 allowUseMod = true
-maxReachDistance = 55
-maxBlockPlaceVolume = 55555
+allowBreakBlocks = false
+allowPlaceBlocks = true
+allowInteractBlocks = false
+allowCopyPasteStructure = false
+maxReachDistance = 5
+maxBlockPlaceVolume = 32
 
-[tiers.builder]
+[tiers.beta]
 allowUseMod = true
-maxReachDistance = 44
-maxBlockPlaceVolume = 44444
+allowBreakBlocks = true
+allowPlaceBlocks = true
+allowInteractBlocks = true
+allowCopyPasteStructure = false
+maxReachDistance = 8
+maxBlockBreakVolume = 64
+maxBlockPlaceVolume = 64
+maxBlockInteractVolume = 64
 
-[tiers.restricted]
-allowUseMod = false
-maxBlockPlaceVolume = 0
+[tiers.gamma]
+allowUseMod = true
+allowBreakBlocks = true
+allowPlaceBlocks = true
+allowInteractBlocks = true
+allowCopyPasteStructure = true
+maxReachDistance = 16
+maxBlockBreakVolume = 256
+maxBlockPlaceVolume = 256
+maxBlockInteractVolume = 256
+maxStructureCopyPasteVolume = 256
+
+
 ```
 
 ## Commands
