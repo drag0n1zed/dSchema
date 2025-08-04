@@ -2,6 +2,7 @@ package io.github.drag0n1zed.dschema;
 
 import java.util.concurrent.atomic.AtomicReference;
 
+import io.github.drag0n1zed.dschema.command.TierCommand;
 import io.github.drag0n1zed.universal.api.core.Player;
 import io.github.drag0n1zed.universal.api.core.World;
 import io.github.drag0n1zed.universal.api.platform.Platform;
@@ -11,6 +12,7 @@ import io.github.drag0n1zed.dschema.networking.packets.session.SessionConfigPack
 import io.github.drag0n1zed.dschema.networking.packets.session.SessionPacket;
 import io.github.drag0n1zed.dschema.session.Session;
 import io.github.drag0n1zed.dschema.session.SessionManager;
+import io.github.drag0n1zed.dschema.session.config.ConstraintConfig;
 import io.github.drag0n1zed.dschema.session.config.SessionConfig;
 
 public final class SchemaSessionManager implements SessionManager {
@@ -32,7 +34,6 @@ public final class SchemaSessionManager implements SessionManager {
     private Schema getEntrance() {
         return entrance;
     }
-
 
     @Override
     public void onSession(Session session, Player player) {
@@ -106,6 +107,23 @@ public final class SchemaSessionManager implements SessionManager {
     }
 
     private void onPlayerLoggedIn(Player player) {
+        // --- START OF NEW LOGIC ---
+        SessionConfig currentConfig = getLastSessionConfig();
+        for (String tag : player.getTags()) {
+            if (tag.startsWith(TierCommand.TIER_TAG_PREFIX)) {
+                String tierName = tag.substring(TierCommand.TIER_TAG_PREFIX.length());
+                ConstraintConfig tierConfig = currentConfig.tiers().get(tierName);
+                if (tierConfig != null) {
+                    // We found a valid tier for the logging-in player.
+                    // Update the master config in memory with their tier's permissions.
+                    SessionConfig newConfig = currentConfig.withPlayerConfig(player.getId(), tierConfig);
+                    getEntrance().getSessionConfigStorage().set(newConfig);
+                    break; // Exit after finding the first valid tier tag
+                }
+            }
+        }
+        // --- END OF NEW LOGIC ---
+
         updateSession(player);
         updateSessionConfig(player);
     }
@@ -120,5 +138,4 @@ public final class SchemaSessionManager implements SessionManager {
     private void updateSessionConfig(Player player) {
         getEntrance().getChannel().sendPacket(new SessionConfigPacket(getLastSessionConfig()), player);
     }
-
 }

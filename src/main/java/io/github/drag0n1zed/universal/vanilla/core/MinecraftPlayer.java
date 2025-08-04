@@ -1,5 +1,6 @@
 package io.github.drag0n1zed.universal.vanilla.core;
 
+import java.util.Set;
 import java.util.UUID;
 
 import io.github.drag0n1zed.universal.api.core.BlockInteraction;
@@ -30,6 +31,11 @@ public record MinecraftPlayer(net.minecraft.world.entity.player.Player refs) imp
     @Override
     public UUID getId() {
         return refs.getUUID();
+    }
+
+    @Override
+    public Set<String> getTags() {
+        return refs.getTags();
     }
 
     @Override

@@ -2,7 +2,11 @@ package io.github.drag0n1zed.universal.api.core;
 
 import io.github.drag0n1zed.universal.api.text.Text;
 
+import java.util.Set;
+
 public interface Player extends Entity {
+
+    Set<String> getTags();
 
     PlayerProfile getProfile();
 
