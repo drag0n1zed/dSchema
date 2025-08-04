@@ -4,7 +4,7 @@
 
 A specialized fork of Huskuraft's [Effortless Structure](https://github.com/huskuraft/effortless).
 
-> **Note:** This fork is for a specific modpack. Support will only be provided through the modpack itself.
+> **Note:** This fork is created for my upcoming modpack. Feel free to use it, but no new features will be added.
 
 ## Added Features
 
