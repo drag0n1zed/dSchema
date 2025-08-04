@@ -19,6 +19,7 @@ public class SessionConfigSerializer implements ConfigSerializer<SessionConfig> 
 
     private static final String KEY_GLOBAL = "global";
     private static final String KEY_PLAYER = "player";
+    private static final String KEY_TIERS = "tiers"; // Add new key
 
     private static final String KEY_USE_COMMANDS = "useCommands";
     private static final String KEY_ALLOW_USE_MOD = "allowUseMod";
@@ -40,6 +41,7 @@ public class SessionConfigSerializer implements ConfigSerializer<SessionConfig> 
         var spec = new ConfigSpec();
         spec.define(KEY_GLOBAL, () -> GlobalConstraintConfigSerializer.INSTANCE.serialize(getDefault().globalConfig()), Config.class::isInstance);
         spec.define(KEY_PLAYER, () -> Config.inMemory(), Config.class::isInstance);
+        spec.define(KEY_TIERS, () -> Config.inMemory(), Config.class::isInstance); // Add spec for tiers
         return spec;
     }
 
@@ -51,6 +53,11 @@ public class SessionConfigSerializer implements ConfigSerializer<SessionConfig> 
     @Override
     public SessionConfig deserialize(Config config) {
         validate(config);
+
+        Map<String, ConstraintConfig> tiers = ((Config) config.get(KEY_TIERS)).entrySet().stream()
+                .map(e -> Map.entry(e.getKey(), PlayerConstraintConfigSerializer.INSTANCE.deserialize(e.getValue())))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+
         return new SessionConfig(
                 GlobalConstraintConfigSerializer.INSTANCE.deserialize(config.get(KEY_GLOBAL)),
                 ((Config) config.get(KEY_PLAYER)).entrySet().stream().map(e -> {
@@ -59,7 +66,8 @@ public class SessionConfigSerializer implements ConfigSerializer<SessionConfig> 
                     } catch (IllegalArgumentException | NullPointerException ignored) {
                         return null;
                     }
-                }).filter(Objects::nonNull).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new))
+                }).filter(Objects::nonNull).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new)),
+                tiers
         );
     }
 
@@ -67,12 +75,20 @@ public class SessionConfigSerializer implements ConfigSerializer<SessionConfig> 
     public Config serialize(SessionConfig sessionConfig) {
         var config = CommentedConfig.inMemory();
         config.add(KEY_GLOBAL, GlobalConstraintConfigSerializer.INSTANCE.serialize(sessionConfig.globalConfig()));
+
         for (var entry : sessionConfig.playerConfigs().entrySet()) {
             config.add(List.of(KEY_PLAYER, entry.getKey().toString()), PlayerConstraintConfigSerializer.INSTANCE.serialize(entry.getValue()));
         }
+
+        for (var entry : sessionConfig.tiers().entrySet()) {
+            config.add(List.of(KEY_TIERS, entry.getKey()), PlayerConstraintConfigSerializer.INSTANCE.serialize(entry.getValue()));
+        }
+
         validate(config);
         return config;
     }
+
+    // --- GlobalConstraintConfigSerializer and PlayerConstraintConfigSerializer remain unchanged ---
 
     public static class GlobalConstraintConfigSerializer implements ConfigSerializer<ConstraintConfig> {
 

@@ -28,14 +28,17 @@ public class TierCommand {
 
     private static int execute(CommandContext<CommandSourceStack> context, Schema entrance) throws CommandSyntaxException {
         ServerPlayer targetPlayer = EntityArgument.getPlayer(context, "player");
-        int saneAdminLimit = 2_000_000;
-        ConstraintConfig adminConfig = new ConstraintConfig(
-                true, true, true, true, true, true, false,
-                saneAdminLimit, saneAdminLimit, saneAdminLimit, saneAdminLimit, saneAdminLimit,
-                java.util.List.of(), java.util.List.of()
-        );
-
         SessionConfig currentConfig = entrance.getSessionConfigStorage().get();
+
+        // Get the "admin" tier config from the loaded TOML file
+        ConstraintConfig adminConfig = currentConfig.tiers().get("admin");
+
+        // Gracefully handle if the "admin" tier is not defined in the config
+        if (adminConfig == null) {
+            context.getSource().sendFailure(Text.text("The 'admin' tier is not defined in dschema.toml.").reference());
+            return 0;
+        }
+
         SessionConfig newConfig = currentConfig.withPlayerConfig(targetPlayer.getUUID(), adminConfig);
 
         entrance.getSessionConfigStorage().set(newConfig);
@@ -45,7 +48,7 @@ public class TierCommand {
             entrance.getChannel().sendPacket(new SessionConfigPacket(newConfig), playerToUpdate);
         }
 
-        context.getSource().sendSuccess(() -> Text.text("Updated and synced admin config for " + targetPlayer.getGameProfile().getName()).reference(), true);
+        context.getSource().sendSuccess(() -> Text.text("Updated and synced 'admin' tier config for " + targetPlayer.getGameProfile().getName()).reference(), true);
 
         return 1;
     }

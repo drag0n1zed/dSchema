@@ -10,13 +10,14 @@ import io.github.drag0n1zed.universal.api.core.Player;
 
 public record SessionConfig(
         ConstraintConfig globalConfig,
-        Map<UUID, ConstraintConfig> playerConfigs
+        Map<UUID, ConstraintConfig> playerConfigs,
+        Map<String, ConstraintConfig> tiers // Add this new field
 ) {
 
-    public static final SessionConfig EMPTY = new SessionConfig(ConstraintConfig.EMPTY, Map.of());
+    public static final SessionConfig EMPTY = new SessionConfig(ConstraintConfig.EMPTY, Map.of(), Map.of());
 
     public static SessionConfig defaultConfig() {
-        return new SessionConfig(ConstraintConfig.DEFAULT, Map.of());
+        return new SessionConfig(ConstraintConfig.DEFAULT, Map.of(), Map.of());
     }
 
     private <T> T getPlayerOrGlobalEntry(UUID id, Function<ConstraintConfig, T> entry) {
@@ -86,7 +87,8 @@ public record SessionConfig(
 
         return new SessionConfig(
                 globalConfig,
-                Collections.unmodifiableMap(map)
+                Collections.unmodifiableMap(map),
+                tiers
         );
     }
 
@@ -94,14 +96,16 @@ public record SessionConfig(
 
         return new SessionConfig(
                 globalConfig,
-                config
+                config,
+                tiers
         );
     }
 
     public SessionConfig withGlobalConfig(ConstraintConfig config) {
         return new SessionConfig(
                 config,
-                playerConfigs
+                playerConfigs,
+                tiers
         );
     }
 
