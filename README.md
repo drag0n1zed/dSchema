@@ -104,8 +104,6 @@ maxBlockBreakVolume = 256
 maxBlockPlaceVolume = 256
 maxBlockInteractVolume = 256
 maxStructureCopyPasteVolume = 256
-
-
 ```
 
 ## Commands
